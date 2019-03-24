@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %} {% block title %} Hello NewsController! {% endblock %} {% block body %}
+
+<section class="news">
+    {% for article in articles %}
+    <article>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y' )}} à {{ article.createdAt | date('H:i') }}</div>
+        <div class="content">
+            <img src="{{ article.image }}" alt=""> {{ article.content | raw }}
+            <a href="{{ path('news_show', {'id' : article.id}) }}" class="btn btn-primary">Lire la suite</a>
+        </div>
+    </article>
+    {% endfor %}
+
+</section>
+<!--<style>
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        font: 18px/1.5 sans-serif;
+    }
+    
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>-->
+{% endblock %}
