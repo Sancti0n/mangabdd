@@ -3,9 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>
+        {% block title %}
+        Bienvenue sur MangaBDD
+        {% endblock %}
+    </title>
     <!--<link href="https://bootswatch.com/4/darkly/bootstrap.min.css" rel="stylesheet">-->
-    <link href="../css/bootstrap.min.css" rel="stylesheet"> {% block stylesheets %}{% endblock %}
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
+    {% block stylesheets %}
+    <link href="{{ asset('../css/bootstrap.min.css') }}" rel="stylesheet">
+    {% endblock %}
 </head>
 
 <body>
@@ -18,18 +25,22 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/news">News<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('news') }}">News<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="{{ path('news_create') }}">Créer une news</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container">
-        {% block body %}{% endblock %}
+        {% block body %}
+        
+        {% endblock %}
     </div>
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+    
+    {% endblock %}
 </body>
 
 </html>
