@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\News;
+use App\Form\NewsType;
+use App\Entity\Comment;
+use App\Form\CommentType;
+
+use App\Repository\NewsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
-
-use App\Entity\News;
-use App\Repository\NewsRepository;
-use App\Form\NewsType;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NewsController extends AbstractController
 {
@@ -68,9 +70,28 @@ class NewsController extends AbstractController
     /**
      * @Route("/news/{id}", name="news_show")
      */
-    public function show(News $article) {
+    public function show(News $article, Request $request, ObjectManager $manager) {
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setCreatedAt(new \DateTime)
+                    ->setNews($article);
+
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('news_show', [
+                'id' => $article->getId()
+            ]);
+        }
+
         return $this->render('news/show.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'commentForm' => $form->createView()
         ]);
     }
 }

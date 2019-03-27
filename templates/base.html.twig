@@ -30,6 +30,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('news_create') }}">Créer une news</a>
                 </li>
+                {% if not app.user %}
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ path('security_login') }}">Se connecter</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
