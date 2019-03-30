@@ -6,7 +6,10 @@
     <h2>{{ article.title }}</h2>
     <div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y' )}} à {{ article.createdAt | date('H:i') }}</div>
     <div class="content">
-        <img src="{{ article.image }}" alt=""> {{ article.content | raw }}
+        <img src="{{ article.image }}" alt="">
+        <div>
+            {{ article.content | raw }}
+        </div>
     </div>
 </article>
 <section id="commentaires">
@@ -18,7 +21,7 @@
                 {{comment.author}} (<small>{{comment.createdAt | date('d/m/Y à H:i')}}</small>)
             </div>
             <div class="col">
-                {{comment.content |raw}}
+                {{comment.content | raw | nl2br }}
             </div>
         </div>
     </div>

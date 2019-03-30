@@ -37,7 +37,7 @@ class NewsController extends AbstractController
 
     /**
      * @Route("/news/new", name="news_create")
-     * @Route("/news/{id}/edit", name="news_edit")
+     * @Route("/news/{id}/{title}/edit", name="news_edit")
      */
     public function form(News $article = null, Request $request, ObjectManager $manager) {
         if (!$article) {
@@ -57,7 +57,8 @@ class NewsController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('news_show', [
-                'id' => $article->getId()
+                'id' => $article->getId(),
+                'title' => $article->getSlug()
             ]);
         }
 
@@ -68,7 +69,7 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/news/{id}", name="news_show")
+     * @Route("/news/{id}/{title}", name="news_show", requirements={"title": "[a-z0-9\-]*"})
      */
     public function show(News $article, Request $request, ObjectManager $manager) {
         $comment = new Comment();
@@ -85,7 +86,8 @@ class NewsController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('news_show', [
-                'id' => $article->getId()
+                'id' => $article->getId(),
+                'title' => $article->getTitle()
             ]);
         }
 

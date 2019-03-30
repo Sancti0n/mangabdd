@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NewsRepository")
@@ -67,6 +68,11 @@ class News
         $this->title = $title;
 
         return $this;
+    }
+
+    public function getSlug() : string
+    {
+        return (new Slugify())->slugify($this->title);
     }
 
     public function getContent(): ?string

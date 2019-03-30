@@ -5,14 +5,19 @@
 {% endblock %} 
 
 {% block body %}
-    <section class="news">
+    <section class="news row">
         {% for article in articles %}
-        <article>
+        <article class="col">
             <h2>{{ article.title }}</h2>
             <div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y' )}} à {{ article.createdAt | date('H:i') }}</div>
             <div class="content">
-                <img src="{{ article.image }}" alt=""> {{ article.content | raw }}
-                <a href="{{ path('news_show', {'id' : article.id}) }}" class="btn btn-primary">Lire la suite</a>
+                <img src="{{ article.image }}" alt="">
+                <div>
+                    {{ article.content | raw }}
+                </div>
+                <div>
+                    <a href="{{ path('news_show', {'id' : article.id, 'title' : article.slug}) }}" class="btn btn-primary">Lire la suite</a>
+                </div>
             </div>
         </article>
         {% endfor %}
