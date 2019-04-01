@@ -69,7 +69,17 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/news/{id}/{title}", name="news_show", requirements={"title": "[a-z0-9\-]*"})
+     * @Route("/news/{id}/{title}/delete", name="news_delete")
+     */
+    public function delete(News $article, objectManager $manager) {
+        $manager->remove($article);
+        $manager->flush();
+
+        return $this->redirectToRoute('news');
+    }
+
+    /**
+     * @Route("/news/{id}/{title}", name="news_show")
      */
     public function show(News $article, Request $request, ObjectManager $manager) {
         $comment = new Comment();
@@ -87,7 +97,7 @@ class NewsController extends AbstractController
 
             return $this->redirectToRoute('news_show', [
                 'id' => $article->getId(),
-                'title' => $article->getTitle()
+                'title' => $article->getSlug('title')
             ]);
         }
 

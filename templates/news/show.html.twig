@@ -30,7 +30,7 @@
     {% if app.user %}
     {{ form_start(commentForm) }}
     {{ form_row(commentForm.author, {'attr': {'placeholder': "Nom" }}) }}
-    {{ form_row(commentForm.content, {'attr': {'placeholder': "Nom" }}) }}
+    {{ form_row(commentForm.content, {'attr': {'placeholder': "Contenu" }}) }}
     
     <button type="submit" class="btn btn-success">Commenter</button>
     {{ form_end(commentForm) }}
