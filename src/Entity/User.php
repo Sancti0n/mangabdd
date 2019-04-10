@@ -26,13 +26,13 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email()
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $username;
 
@@ -47,6 +47,11 @@ class User implements UserInterface
      * @ORM\ManyToMany(targetEntity="App\Entity\UserBook", mappedBy="username")
      */
     private $userBooks;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles = [];
 
     public function __construct()
     {
@@ -101,12 +106,18 @@ class User implements UserInterface
 
     public function getSalt()
     {
-        
+        return null;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
     }
 
     /**
@@ -133,6 +144,13 @@ class User implements UserInterface
             $this->userBooks->removeElement($userBook);
             $userBook->removeUsername($this);
         }
+
+        return $this;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }

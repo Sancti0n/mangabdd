@@ -36,8 +36,8 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/news/new", name="news_create")
-     * @Route("/news/{id}/{title}/edit", name="news_edit")
+     * @Route("admin/news/new", name="news_create")
+     * @Route("admin/news/{id}/{title}/edit", name="news_edit")
      */
     public function form(News $article = null, Request $request, ObjectManager $manager) {
         if (!$article) {
@@ -62,14 +62,14 @@ class NewsController extends AbstractController
             ]);
         }
 
-        return $this->render('news/create.html.twig', [
+        return $this->render('admin/create.html.twig', [
             'formNews' => $form->createView(),
             'editMode' => $article->getId() !== null
         ]);
     }
 
     /**
-     * @Route("/news/{id}/{title}/delete", name="news_delete")
+     * @Route("admin/news/{id}/{title}/delete", name="news_delete")
      */
     public function delete(News $article, objectManager $manager) {
         $manager->remove($article);

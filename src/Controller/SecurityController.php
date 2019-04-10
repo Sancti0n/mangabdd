@@ -19,6 +19,10 @@ class SecurityController extends AbstractController
      */
     public function registration(Request $request, Objectmanager $manager, UserPasswordEncoderInterface $encoder)
     {
+        if ($this->isGranted('ROLE_USER')) {
+            return $this->redirectToRoute('home');
+        }
+        
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);
@@ -29,6 +33,7 @@ class SecurityController extends AbstractController
             $hash = $encoder->encodePassword($user, $user->getPassword());
 
             $user->setPassword($hash);
+            $user->setRoles(['ROLE_USER']);
 
             $manager->persist($user);
             $manager->flush();
@@ -44,6 +49,9 @@ class SecurityController extends AbstractController
      * @Route("/connexion", name="security_login")
      */
     public function login() {
+        if ($this->isGranted('ROLE_USER')) {
+            return $this->redirectToRoute('home');
+        }
         return $this->render('security/login.html.twig');
     }
 
