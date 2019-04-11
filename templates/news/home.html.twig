@@ -2,11 +2,10 @@
 
 {% block body %}
 
-{{ app.user.username }}
-
 <h1>Bienvenue sur ce site de news !</h1>
-
+{% if app.user %}
 <p>Bonjour {{ app.user.username }}, votre rôle est {{ app.user.roles[0] }}.</p>
+{% endif %}
 
 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, adipisci ipsum cum, iste debitis id iusto rerum officiis in deleniti alias amet totam minus minima assumenda saepe blanditiis, aspernatur numquam quod reprehenderit et accusantium. Perspiciatis
     incidunt numquam repellendus placeat dolorum!</p>

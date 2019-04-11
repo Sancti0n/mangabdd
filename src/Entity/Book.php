@@ -117,24 +117,24 @@ class Book
         return $this;
     }
 
-    public function getIsbn10(): ?int
+    public function getIsbn10(): ?string
     {
         return $this->isbn10;
     }
 
-    public function setIsbn10(int $isbn10): self
+    public function setIsbn10(string $isbn10): self
     {
         $this->isbn10 = $isbn10;
 
         return $this;
     }
 
-    public function getIsbn13(): ?int
+    public function getIsbn13(): ?string
     {
         return $this->isbn13;
     }
 
-    public function setIsbn13(int $isbn13): self
+    public function setIsbn13(string $isbn13): self
     {
         $this->isbn13 = $isbn13;
 

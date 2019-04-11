@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajout d'un livre
+{% endblock %}
+
+{% form_theme formBook 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<h1>Ajout d'un livre</h1>
+
+{{ form_start(formBook) }}
+
+{{ form_row(formBook.title, {'attr': {'placeholder': "Titre du livre"}}) }}
+
+{{ form_row(formBook.format, {'attr': {'placeholder': "Type de livre"}}) }}
+
+{{ form_row(formBook.isbn10, {'attr': {'placeholder': "Isbn 10"}}) }}
+
+{{ form_row(formBook.isbn13, {'attr': {'placeholder': "Isbn 13"}}) }}
+
+{{ form_row(formBook.ntitle, {'attr': {'placeholder': "Numéro du volume"}}) }}
+
+{{ form_row(formBook.description, {'attr': {'placeholder': "Description du livre"}}) }}
+
+{{ form_row(formBook.rightholderPublisher, {'attr': {'placeholder': "Nom de l'ayant droit"}}) }}
+
+{{ form_row(formBook.publisher, {'attr': {'placeholder': "Nom de l'éditeur"}}) }}
+
+{{ form_row(formBook.author, {'attr': {'placeholder': "Nom de l'auteur"}}) }}
+
+{{ form_row(formBook.artist, {'attr': {'placeholder': "Nom de l'artiste"}}) }}
+
+{{ form_row(formBook.language, {'attr': {'placeholder': "Langue du livre"}}) }}
+
+{{ form_row(formBook.legalDeposit, {'attr': {'placeholder': "Date d'impression"}}) }}
+
+<button type="submit" class="btn btn-success">
+    {% if editMode %}
+    Enregistrer les modifications
+    {% else %}
+    Ajouter le livre
+    {% endif %}
+</button>
+
+{{ form_end(formBook) }}
+
+{% endblock %}
