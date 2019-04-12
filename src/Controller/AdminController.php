@@ -9,15 +9,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\BookRepository;
 
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="administration")
      */
-    public function index() {
+    public function index(BookRepository $repo) {
+        $book = $repo->findAll();
+
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'book' => $book
         ]);
     }
 

@@ -6,4 +6,65 @@
 
 {% block body %}
 
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th scope="row">Titre</th>
+            <th scope="row">Format</th>
+            <th scope="row">ISBN 10</th>
+            <th scope="row">ISBN 13</th>
+            <th scope="row">Numéro du volume</th>
+            <th scope="row">Description</th>
+            <th scope="row">Éditeur ayant droit</th>
+            <th scope="row">Éditeur</th>
+            <th scope="row">Auteur</th>
+            <th scope="row">Artiste</th>
+            <th scope="row">Langue</th>
+            <th scope="row">Date d'impression</th>
+        </tr>
+    </thead>
+
+{% for book in book %}
+    <tr class="table-dark">
+        <td>{{ book.title }}</td>
+        <td>{{ book.format }}</td>
+        <td>{{ book.isbn10 }}</td>
+        <td>{{ book.isbn13 }}</td>
+        <td>{{ book.ntitle }}</td>
+        <td>{{ book.description }}</td>
+        <td>{{ book.rightholderPublisher }}</td>
+        <td>{{ book.publisher }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.artist }}</td>
+        <td>{{ book.language }}</td>
+        <td>{{ book.legalDeposit }}</td>
+    </tr>
+
+{% endfor %}
+
+</table>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th scope="row">Titre</th>
+            <th scope="row">Numéro du volume</th>
+            <th scope="row">Format</th>
+            <th scope="row">Langue</th>
+            <th scope="row">Éditeur</th>
+        </tr>
+    </thead>
+    
+    {% for book in book %}
+        <tr class="table-dark">
+            <td>{{ book.title }}</td>
+            <td>{{ book.ntitle }}</td>
+            <td>{{ book.format }}</td>
+            <td>{{ book.language }}</td>
+            <td>{{ book.publisher }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
 {% endblock %}
