@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Listes des livres
+{% endblock %}
+
+{% block body %}
+
+<h1>Listes des livres</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th scope="row">Titre</th>
+            <th scope="row">Numéro du volume</th>
+            <th scope="row">Format</th>
+            <th scope="row">Langue</th>
+            <th scope="row">Éditeur</th>
+        </tr>
+    </thead>
+    
+    {% for book in book %}
+        <tr class="table-dark">
+            <td>{{ book.title }}</td>
+            <td>{{ book.ntitle }}</td>
+            <td>{{ book.format }}</td>
+            <td>{{ book.language }}</td>
+            <td>{{ book.publisher }}</td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

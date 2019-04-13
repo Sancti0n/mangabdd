@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ book.title}} - Tome {{ book.ntitle }}
+{% endblock %}
+
+{% block body %}
+
+<div class="card mb-3">
+    <h1 class="card-header">{{ book.title }}</h1>
+    <h4 class="card-header">
+        {% if book.author == book.artist %}
+            Auteur : {{ book.author }}
+        {% else %}
+            Auteur : {{ book.author }} | Artiste : {{ book.artist }}
+        {% endif %}
+    </h4>
+  <div class="card-body">
+    <h5 class="card-title">{{ book.format }}</h5>
+    <p class="card-text">Description : {{ book.description }}</p>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Tome {{ book.ntitle }}</p>
+    <p class="card-text">ISBN 10 : {{ book.isbn10 }}</p>
+    <p class="card-text">ISBN 13 : {{ book.isbn13 }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Tome {{ book.ntitle }}</li>
+    <li class="list-group-item">Éditeur ayant droit : {{ book.rightholderPublisher }}</li>
+    <li class="list-group-item">Éditeur : {{ book.publisher }}</li>
+    <li class="list-group-item">Langue : {{ book.language }}</li>
+    <li class="list-group-item">Date d'impression : {{ book.legalDeposit }}</li>
+  </ul>
+</div>
+
+{% endblock %}
