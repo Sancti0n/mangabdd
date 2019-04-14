@@ -3,11 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Book;
-use App\Form\BookType;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\BookRepository;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BookController extends AbstractController
 {
@@ -15,7 +14,7 @@ class BookController extends AbstractController
      * @Route("/books", name="books")
      */
     public function index(BookRepository $repo) {
-        $book = $repo->findAll();
+        $book = $repo->findByOrder();
 
         return $this->render('book/index.html.twig', [
             'controller_name' => 'BookController',

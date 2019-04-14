@@ -21,7 +21,7 @@
     
     {% for book in book %}
         <tr class="table-dark">
-            <td>{{ book.title }}</td>
+            <td><a href="{{ path('book_id', {'id' : book.id}) }}" class="text-primary">{{ book.title }}</a> </td>
             <td>{{ book.ntitle }}</td>
             <td>{{ book.format }}</td>
             <td>{{ book.language }}</td>
