@@ -17,7 +17,7 @@
     </h4>
   <div class="card-body">
     <h5 class="card-title">{{ book.format }}</h5>
-    <p class="card-text">Description : {{ book.description }}</p>
+    <p class="card-text">{% if book.description %} Description : {{ book.description }} {% endif %}</p>
   </div>
   <div class="card-body">
     <p class="card-text">Tome {{ book.ntitle }}</p>
@@ -32,5 +32,13 @@
     <li class="list-group-item">Date d'impression : {{ book.legalDeposit }}</li>
   </ul>
 </div>
+
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{ path('book_edit', {'id' : book.id, 'ntitle' : book.ntitle, 'title' : book.slug}) }} " class="btn btn-outline-warning">Éditer la fiche</a>
+{% endif %}
+
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+<a href="" class="btn btn-outline-danger">Supprimer la fiche</a>
+{% endif %}
 
 {% endblock %}

@@ -27,6 +27,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/addbook", name="form_book")
+     * @Route("admin/addbook/{id}/{title}-{ntitle}/edit", name="book_edit", requirements={"title": "[a-z0-9\-]*"})
      */
     public function formBook(Book $book = null, Request $request, ObjectManager $manager) {
         if (!$book) {
@@ -39,7 +40,10 @@ class AdminController extends AbstractController
             $manager->persist($book);
             $manager->flush();
 
-            return $this->redirectToRoute('home', [
+            return $this->redirectToRoute('book_id', [
+                'id' => $book->getId(),
+                'title' => $book->getSlug(),
+                'ntitle' => $book->getNtitle()
             ]);
         }
 
