@@ -70,7 +70,7 @@ class News
         return $this;
     }
 
-    public function getSlug() : string
+    public function getSlug() : ?string
     {
         return (new Slugify())->slugify($this->title);
     }

@@ -23,8 +23,7 @@ class BookRepository extends ServiceEntityRepository
     //  * @return Book[] Returns an array of Book objects
     //  */
     
-    public function findByOrder()
-    {
+    public function findByOrder() {
         return $this->createQueryBuilder('a')
             ->orderBy('a.title', 'ASC')
             ->getQuery()

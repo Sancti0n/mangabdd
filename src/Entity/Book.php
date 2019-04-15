@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -103,6 +104,11 @@ class Book
         $this->title = $title;
 
         return $this;
+    }
+
+    public function getSlug() : ?string
+    {
+        return (new Slugify())->slugify($this->title);
     }
 
     public function getFormat(): ?string
