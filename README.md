@@ -3,10 +3,11 @@ Projet sous Symfony 4.2.4
 Procédure de récupération du projet : 
 
     Cloner https://github.com/Sancti0n/mangabdd.git
-    MangaBDD->install
-    Créer la base de donnée : bin\console doctrine:database:create
-    Récupérer la base de donnée : bin\console doctrine:migrations:migrate
-    Télécharger les fixtures : bin\console doctrine:fixtures:load
+    Créer le répertoire mangabdd
+    Taper la commande composer install
+    Créer la base de donnée : php bin/console doctrine:database:create
+    Récupérer la base de donnée : php bin/console doctrine:migrations:migrate
+    Télécharger les fixtures : php bin/console doctrine:fixtures:load
 
 C'est un système basique de gestion de livres :
     

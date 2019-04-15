@@ -20,7 +20,6 @@ class AdminController extends AbstractController
         $book = $repo->findAll();
 
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
             'book' => $book
         ]);
     }

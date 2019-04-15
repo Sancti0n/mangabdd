@@ -17,9 +17,7 @@ class BookController extends AbstractController
         $book = $repo->findByOrder();
 
         return $this->render('book/index.html.twig', [
-            'controller_name' => 'BookController',
-            'book' => $book,
-            //'title' => $book->getSlug()
+            'book' => $book
         ]);
     }
 
