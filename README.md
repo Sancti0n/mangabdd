@@ -9,6 +9,7 @@ Procédure de récupération du projet :
     Télécharger les fixtures : bin\console doctrine:fixtures:load
 
 C'est un système basique de gestion de livres :
+    
     $builder
         ->add('title')
         ->add('format')
