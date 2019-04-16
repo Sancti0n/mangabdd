@@ -38,7 +38,7 @@
 {% endif %}
 
 {% if is_granted('ROLE_SUPER_ADMIN') %}
-<a href="" class="btn btn-outline-danger">Supprimer la fiche</a>
+<a href="{{ path('book_delete', {'id' : book.id, 'ntitle' : book.ntitle, 'title' : book.slug}) }} " class="btn btn-outline-danger">Supprimer la fiche</a>
 {% endif %}
 
 {% endblock %}

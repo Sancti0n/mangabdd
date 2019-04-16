@@ -51,4 +51,14 @@ class AdminController extends AbstractController
             'editMode' => $book->getId() !== null
         ]);
     }
+
+    /**
+     * @Route("admin/book/{id}/{title}-{ntitle}/delete", name="book_delete", requirements={"title": "[a-z0-9\-]*"})
+     */
+    public function delete(Book $book, objectManager $manager) {
+        $manager->remove($book);
+        $manager->flush();
+
+        return $this->redirectToRoute('books');
+    }
 }

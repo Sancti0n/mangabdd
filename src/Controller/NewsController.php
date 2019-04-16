@@ -23,7 +23,6 @@ class NewsController extends AbstractController
         $articles = $repo->findAll();
         
         return $this->render('news/index.html.twig', [
-            'controller_name' => 'NewsController',
             'articles' => $articles
         ]);
     }
