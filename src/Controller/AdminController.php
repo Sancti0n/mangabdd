@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Form\BookType;
+use App\Entity\Comment;
 
+use App\Form\CommentType;
+use App\Repository\BookRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\BookRepository;
 
 class AdminController extends AbstractController
 {
@@ -60,5 +62,36 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute('books');
+    }
+
+    /**
+     * @Route("admin/news/comment/{id}/edit", name="comment_edit")
+     */
+    public function editComment(Comment $comment, Request $request, objectManager $manager) {
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('news');
+        }
+
+        return $this->render('admin/editComment.html.twig', [
+            'commentForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("admin/news/comment/{id}/delete", name="comment_delete", requirements={"title": "[a-z0-9\-]*"})
+     */
+    public function deleteComment(Comment $comment, objectManager $manager) {
+        $manager->remove($comment);
+        $manager->flush();
+        
+        return $this->redirectToRoute('news');
     }
 }

@@ -6,35 +6,52 @@
 
 {% block body %}
 
-<article>
+<article class="mb-5">
     <h2>{{ article.title }}</h2>
     <div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y' )}} à {{ article.createdAt | date('H:i') }}</div>
     <div class="content">
         <img src="{{ article.image }}" alt="">
         <div>
-            <p>
-                {{ article.content | raw }}
-            </p>
+            <p>{{ article.content | raw }}</p>
         </div>
     </div>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('news_edit', {'id' : article.id, 'title' : article.slug}) }} " class="btn btn-outline-warning">Éditer la news</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a href="{{ path('news_delete', {'id' : article.id, 'title' : article.slug}) }} " class="btn btn-outline-danger">Supprimer la news</a>
+    {% endif %}
 </article>
 <section id="commentaires">
-    <h1>{{ article.comments | length }} Commentaires :</h1>
+    <h3>{{ article.comments | length }} Commentaires :</h3>
     {% for comment in article.comments %}
-    <div class="comment">
-        <div class="row">
-            <div class="col-3">
-                {{comment.author}} (<small>{{comment.createdAt | date('d/m/Y à H:i')}}</small>)
+    <div class="card border-primary mb-3" style="max-width: 30rem;">
+        
+            <div class="card-header">
+                {{comment.author}}
             </div>
-            <div class="col">
-                <p>
-                    {{comment.content | raw | nl2br }}
-                </p>
+            <div class="card-text pl-3 pt-3">
+                <p>{{comment.content | raw | nl2br }}</p>
             </div>
-        </div>
+            <div class="card-text pl-3">
+                <p>Écrit à {{comment.createdAt | date('d/m/Y à H:i')}}</p>
+            </div>
+            
     </div>
+    <div class="mb-3">
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('comment_edit', {'id' : comment.id}) }}" class="btn btn-outline-warning">Éditer le commentaire</a>
+        {% endif %}
+
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a href="{{ path('comment_delete', {'id' : comment.id}) }}" class="btn btn-outline-danger">Supprimer le commentaire</a>
+        {% endif %}
+    </div>
+        
     {% endfor %}
 
+    <hr class="my-4">
     {% if app.user %}
     {{ form_start(commentForm) }}
     {{ form_row(commentForm.author, {'attr': {'placeholder': "Nom" }}) }}
@@ -44,8 +61,9 @@
     {{ form_end(commentForm) }}
 
     {% else %}
-        <h2>Vous ne pouvez pas commenter !</h2>
-        <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>
+    <h2>Vous ne pouvez pas commenter !</h2>
+    <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>
     {% endif %}
 </section>
+
 {% endblock %}

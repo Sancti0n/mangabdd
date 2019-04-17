@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Modification d'un commentaire
+{% endblock %}
+
+{% form_theme commentForm 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+{{ form_start(commentForm) }}
+
+{{ form_row(commentForm.author, {'attr': {'placeholder': "Nom" }}) }}
+{{ form_row(commentForm.content, {'attr': {'placeholder': "Contenu" }}) }}
+    
+<button type="submit" class="btn btn-success">Modifier</button>
+
+{{ form_end(commentForm) }}
+
+{% endblock %}
