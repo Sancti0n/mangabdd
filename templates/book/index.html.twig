@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<h1>Listes des livres</h1>
+<h1 class="display-6"></h1>Listes des livres</h1>
 
 <table class="table table-hover">
     <thead>
@@ -20,13 +20,13 @@
     </thead>
     
     {% for book in book %}
-        <tr class="table-dark">
-            <td><a href="{{ path('book_id', {'id' : book.id, 'ntitle' : book.ntitle, 'title' : book.slug}) }}" class="text-primary">{{ book.title }}</a> </td>
-            <td>{{ book.ntitle }}</td>
-            <td>{{ book.format }}</td>
-            <td>{{ book.language }}</td>
-            <td>{{ book.publisher }}</td>
-        </tr>
+    <tr class="table-dark">
+        <td><a href="{{ path('book_id', {'id' : book.id, 'ntitle' : book.ntitle, 'title' : book.slug}) }}" class="text-primary">{{ book.title }}</a> </td>
+        <td>{{ book.ntitle }}</td>
+        <td>{{ book.format }}</td>
+        <td>{{ book.language }}</td>
+        <td>{{ book.publisher }}</td>
+    </tr>
     {% endfor %}
 
 {% endblock %}

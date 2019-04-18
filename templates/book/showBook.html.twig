@@ -7,14 +7,16 @@
 {% block body %}
 
 <div class="card mb-3">
-    <h1 class="card-header">{{ book.title }}</h1>
-    <h4 class="card-header">
-        {% if book.author == book.artist %}
-            Auteur : {{ book.author }}
-        {% else %}
-            Auteur : {{ book.author }} | Artiste : {{ book.artist }}
-        {% endif %}
-    </h4>
+  <h1 class="card-header">{{ book.title }}</h1>
+  
+  <h4 class="card-header">
+  {% if book.author == book.artist %}
+  Auteur : {{ book.author }}
+  {% else %}
+  Auteur : {{ book.author }} | Artiste : {{ book.artist }}
+  {% endif %}
+  </h4>
+  
   <div class="card-body">
     <h5 class="card-title">{{ book.format }}</h5>
     <p class="card-text">{% if book.description %} Description : {{ book.description }} {% endif %}</p>

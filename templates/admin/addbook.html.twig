@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Ajout d'un livre
+Ajout d'un livre
 {% endblock %}
 
 {% form_theme formBook 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
 
-<h1>Ajout d'un livre</h1>
+<h1 class="display-6">Ajout d'un livre</h1>
+
+<p><span class="redFields">*</span> Champs obligatoire</p>
 
 {{ form_start(formBook) }}
 

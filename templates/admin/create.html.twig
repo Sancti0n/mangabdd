@@ -1,14 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Création d'une news
+
+{% if editMode %}
+Modification de la news
+{% else %}
+Création d'une news
+{% endif %}
+
 {% endblock %}
 
 {% form_theme formNews 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
 
-<h1>Création d'une news</h1>
+{% if editMode %}
+<h1 class="display-6">Modification de la news</h1>
+{% else %}
+<h1 class="display-6">Création d'une news</h1>
+{% endif %}
+
+<p><span class="redFields">*</span> Champs obligatoire</p>
 
 {{ form_start(formNews) }}
 
@@ -19,11 +31,11 @@
 {{ form_row(formNews.image, {'attr': {'placeholder': "Image de la news"}}) }}
 
 <button type="submit" class="btn btn-success">
-    {% if editMode %}
-    Enregistrer les modifications
-    {% else %}
-    Ajouter la news
-    {% endif %}
+{% if editMode %}
+<h2 class="display-6">Enregistrer les modifications</h2>
+{% else %}
+<h2 class="display-6">Ajouter la news</h2>
+{% endif %}
 </button>
 
 {{ form_end(formNews) }}

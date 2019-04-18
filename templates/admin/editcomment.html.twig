@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Modification d'un commentaire
+Modification d'un commentaire
 {% endblock %}
 
 {% form_theme commentForm 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
+
+<p><span class="redFields">*</span> Champs obligatoire</p>
 
 {{ form_start(commentForm) }}
 
