@@ -10,6 +10,16 @@ Ajout d'un livre
 
 <h1 class="display-6">Ajout d'un livre</h1>
 
+<div class="jumbotron">
+    <h2 class="display-6">API de recherche sur Google Books</h2>
+    <form id="form">
+        <input type="search" id="livres" class="form-control" placeholder="Ecrire le nom du livre" required="required" name="recherches">
+        <button class="btn btn-primary">Rechercher</button>
+        <a href="javascript:window.location.reload()">Recharger la page</a>
+    </form>
+    <div class="container" id="result"></div>
+</div>
+
 <p><span class="redFields">*</span> Champs obligatoire</p>
 
 {{ form_start(formBook) }}
