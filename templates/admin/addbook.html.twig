@@ -8,16 +8,27 @@ Ajout d'un livre
 
 {% block body %}
 
-<h1 class="display-6">Ajout d'un livre</h1>
+<h1 class="display-5">Ajout d'un livre</h1>
 
 <div class="jumbotron">
-    <h2 class="display-6">API de recherche sur Google Books</h2>
+    <h3 class="display-5">API de recherche sur Google Books</h2>
     <form id="form">
-        <input type="search" id="livres" class="form-control" placeholder="Ecrire le nom du livre" required="required" name="recherches">
-        <button class="btn btn-primary">Rechercher</button>
-        <a href="javascript:window.location.reload()">Recharger la page</a>
+		<input type="search" id="livres" class="form-control" placeholder="Ecrire le nom du livre" required="required" name="recherches">
+		<button class="btn btn-outline-success mt-1">Rechercher</button>
+		<a class="btn btn-outline-warning mt-1" href="javascript:window.location.reload()">Recharger la page</a>
     </form>
-    <div class="container" id="result"></div>
+    <div class="container mt-3">
+        <div class="row">
+            <div id="result0" class="col-sm border border-primary d-none p-3"></div>
+            <div id="result1" class="col-sm border border-primary d-none p-3"></div>
+            <div id="result2" class="col-sm border border-primary d-none p-3"></div>
+        </div>
+        <div class="row">
+            <div id="result3" class="col-sm border border-primary d-none"></div>
+            <div id="result4" class="col-sm border border-primary d-none"></div>
+            <div id="result5" class="col-sm border border-primary d-none"></div>
+        </div>
+    </div>
 </div>
 
 <p><span class="redFields">*</span> Champs obligatoire</p>

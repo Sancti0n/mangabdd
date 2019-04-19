@@ -3,61 +3,60 @@ $(document).ready(function () {
         e.preventDefault();
 
         var search = $("#livres").val();
-        if (search === '') {
-            var searchEmpty = $('<h5>Vous devez écrire dans ce champ</h5>');
-            searchEmpty.appendTo('#result');
+        if (search === "") {
+            $('#livres').attr("placeholder", "Écrivez ici !");
         }
         else {
             var url, img, title, author, isbn13, isbn10, pageCount, publishedDate, lang, publisher, price, ebook;
     
             $.get("https://www.googleapis.com/books/v1/volumes?q=" + search, function (response) {
+                // Le maximum est 10
                 for (var i = 0; i < 6; i+=1) {
-                    title = $('<p>' + response.items[i].volumeInfo.title + '</p>');
-                    author = $('<p>' + response.items[i].volumeInfo.authors + '</p>');
-                    ebook = $('<h5>Ebook : ' + response.items[i].saleInfo.isEbook + '</h5>');
-                    isbn13 = $('<h5>' + response.items[i].volumeInfo.industryIdentifiers[0].identifier + '</h5>');
-                    if (typeof response.items[i].volumeInfo.industryIdentifiers[1] !== 'undefined') {
-                        isbn10 = $('<h5>'+ response.items[i].volumeInfo.industryIdentifiers[1].identifier + '</h5>');
+                    title = response.items[i].volumeInfo.title;
+                    author = response.items[i].volumeInfo.authors;
+                    ebook = response.items[i].saleInfo.isEbook;
+                    isbn13 = response.items[i].volumeInfo.industryIdentifiers[0].identifier;
+                    if (typeof response.items[i].volumeInfo.industryIdentifiers[1] !== "undefined") {
+                        isbn10 = response.items[i].volumeInfo.industryIdentifiers[1].identifier;
                     }
                     else {
-                        isbn10 = "undefined";
+                        isbn10 = 'undefined';
                     }
-                    pageCount = $('<h5>' + response.items[i].volumeInfo.pageCount + '</h5>');
-                    publishedDate = $('<h5>'+ response.items[i].volumeInfo.publishedDate + '</h5>');
-                    lang = $('<h5>' + response.items[i].volumeInfo.language + '</h5>');
-                    publisher = $('<h5>' + response.items[i].volumeInfo.publisher + '</h5>');
-                    if (typeof response.items[i].saleInfo.listPrice !== 'undefined') {
-                        price = $('<h5>' + response.items[i].saleInfo.listPrice.amount + ' €</h5>');
+                    pageCount = response.items[i].volumeInfo.pageCount;
+                    publishedDate = response.items[i].volumeInfo.publishedDate;
+                    lang = response.items[i].volumeInfo.language;
+                    publisher = response.items[i].volumeInfo.publisher;
+                    if (typeof response.items[i].saleInfo.listPrice !== "undefined") {
+                        price = response.items[i].saleInfo.listPrice.amount;
                     }
                     else {
                         price = "undefined";
                     }
-                    
-                    img = $('<img><a href=' + response.items[i].volumeInfo.infoLink + '></div>');
-                    if (typeof response.items[i].volumeInfo.imageLinks !== 'undefined') {
+                    img = $("<img><a href="+response.items[i].volumeInfo.infoLink+">");
+                    if (typeof response.items[i].volumeInfo.imageLinks !== "undefined") {
                         url=response.items[i].volumeInfo.imageLinks.thumbnail;
                     }
                     else {
                         url = "undefined";
                     }
                     
+                    $("#result"+i).removeClass("d-none").addClass("d-block");
                     img.attr('src',url);
-                    title.appendTo("#result");
-                    author.appendTo("#result");
-                    ebook.appendTo("#result");
-                    isbn13.appendTo("#result");
+                    $("<p>"+title+"</p>").appendTo("#result"+i);
+                    $("<p>"+author+"</p>").appendTo("#result"+i);
+                    $("<p>Ebook : "+ebook+"</p>").appendTo("#result"+i);
+                    $("<p>"+isbn13+"</p>").appendTo("#result"+i);
                     if (isbn10 !== "undefined") {
-                        isbn10.appendTo("#result");
+                        $("<p>"+isbn10+"</p>").appendTo("#result"+i);
                     }
-                    pageCount.appendTo("#result");
-                    publishedDate.appendTo("#result");
-                    lang.appendTo("#result");
-                    publisher.appendTo("#result");
+                    $("<p>"+pageCount+"</p>").appendTo("#result"+i);
+                    $("<p>"+publishedDate+"</p>").appendTo("#result"+i);
+                    $("<p>"+lang+"</p>").appendTo("#result"+i);
+                    $("<p>"+publisher+"</p>").appendTo("#result"+i);
                     if (price !== "undefined") {
-                        price.appendTo("#result");
+                        $("<p>"+price+"</p>").appendTo("#result"+i);
                     }
-                    
-                    img.appendTo("#result");
+                    img.appendTo("#result"+i);
                 }
             });
         }

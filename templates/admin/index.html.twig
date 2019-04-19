@@ -7,7 +7,7 @@
 {% block body %}
 
 <div class="jumbotron">
-  <h1 class="display-6">Administration</h1>
+  <h1 class="display-5">Administration</h1>
   <p class="lead">Bonjour {{ app.user.username }}, voilà vos possibilités en tant que {% if app.user.roles[0] == 'ROLE_ADMIN' %} Administrateur {% else %} Super Administrateur {% endif %}:</p>
   <hr class="my-4">
   <div class="card border-success mb-3" style="max-width: 20rem;">

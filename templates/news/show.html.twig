@@ -7,7 +7,7 @@
 {% block body %}
 
 <article class="mb-5">
-    <h1 class="display-6">{{ article.title }}</h1>
+    <h1 class="display-5">{{ article.title }}</h1>
     <div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y' )}} à {{ article.createdAt | date('H:i') }}</div>
     <div class="content">
         <img src="{{ article.image }}" alt="">
@@ -22,7 +22,7 @@
     {% endif %}
 </article>
 <section id="commentaires">
-        <h1 class="display-6">{{ article.comments | length }} Commentaires :</h1>
+        <h1 class="display-5">{{ article.comments | length }} Commentaires :</h1>
     {% for comment in article.comments %}
     <div class="card border-primary mb-3" style="max-width: 30rem;">
         
@@ -51,7 +51,7 @@
     
     {% if app.user %}
 
-    <h2 class="display-6">Ajouter un commentaire :</h2>
+    <h2 class="display-5">Ajouter un commentaire :</h2>
 
     <p><span class="redFields">*</span> Champs obligatoire</p>
 
