@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         var search = $("#livres").val();
         if (search === "") {
-            $('#livres').attr("placeholder", "Écrivez ici !");
+            $("#livres").attr("placeholder", "Écrivez ici !");
         }
         else {
             var url, img, title, author, isbn13, isbn10, pageCount, publishedDate, lang, publisher, price, ebook;
@@ -20,7 +20,7 @@ $(document).ready(function () {
                         isbn10 = response.items[i].volumeInfo.industryIdentifiers[1].identifier;
                     }
                     else {
-                        isbn10 = 'undefined';
+                        isbn10 = "undefined";
                     }
                     pageCount = response.items[i].volumeInfo.pageCount;
                     publishedDate = response.items[i].volumeInfo.publishedDate;
@@ -41,15 +41,15 @@ $(document).ready(function () {
                     }
                     
                     $("#result"+i).removeClass("d-none").addClass("d-block");
-                    img.attr('src',url);
-                    $("<p>"+title+"</p>").appendTo("#result"+i);
-                    $("<p>"+author+"</p>").appendTo("#result"+i);
+                    img.attr("src",url);
+                    $("<p>Titre : "+title+"</p>").appendTo("#result"+i);
+                    $("<p>Auteur : "+author+"</p>").appendTo("#result"+i);
                     $("<p>Ebook : "+ebook+"</p>").appendTo("#result"+i);
                     $("<p>"+isbn13+"</p>").appendTo("#result"+i);
                     if (isbn10 !== "undefined") {
                         $("<p>"+isbn10+"</p>").appendTo("#result"+i);
                     }
-                    $("<p>"+pageCount+"</p>").appendTo("#result"+i);
+                    $("<p>Pages : "+pageCount+"</p>").appendTo("#result"+i);
                     $("<p>"+publishedDate+"</p>").appendTo("#result"+i);
                     $("<p>"+lang+"</p>").appendTo("#result"+i);
                     $("<p>"+publisher+"</p>").appendTo("#result"+i);
