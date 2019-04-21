@@ -79,16 +79,6 @@ class Book
      */
     private $legalDeposit;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\UserBook", mappedBy="idBook")
-     */
-    private $userBooks;
-
-    public function __construct()
-    {
-        $this->userBooks = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -239,34 +229,6 @@ class Book
     public function setLegalDeposit(?string $legalDeposit): self
     {
         $this->legalDeposit = $legalDeposit;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|UserBook[]
-     */
-    public function getUserBooks(): Collection
-    {
-        return $this->userBooks;
-    }
-
-    public function addUserBook(UserBook $userBook): self
-    {
-        if (!$this->userBooks->contains($userBook)) {
-            $this->userBooks[] = $userBook;
-            $userBook->addIdBook($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserBook(UserBook $userBook): self
-    {
-        if ($this->userBooks->contains($userBook)) {
-            $this->userBooks->removeElement($userBook);
-            $userBook->removeIdBook($this);
-        }
 
         return $this;
     }

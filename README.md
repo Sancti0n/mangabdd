@@ -3,7 +3,7 @@ Projet sous Symfony 4.2.4
 Procédure de récupération du projet : 
 
     Cloner https://github.com/Sancti0n/mangabdd.git
-    Créer le répertoire mangabdd
+    cd mangabdd
     Taper la commande composer install
     Créer la base de donnée : php bin/console doctrine:database:create
     Récupérer la base de donnée : php bin/console doctrine:migrations:migrate

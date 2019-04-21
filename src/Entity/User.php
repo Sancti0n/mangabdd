@@ -44,11 +44,6 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\UserBook", mappedBy="username")
-     */
-    private $userBooks;
-
-    /**
      * @ORM\Column(type="array")
      */
     private $roles = [];
@@ -118,34 +113,6 @@ class User implements UserInterface
         }
 
         return array_unique($roles);
-    }
-
-    /**
-     * @return Collection|UserBook[]
-     */
-    public function getUserBooks(): Collection
-    {
-        return $this->userBooks;
-    }
-
-    public function addUserBook(UserBook $userBook): self
-    {
-        if (!$this->userBooks->contains($userBook)) {
-            $this->userBooks[] = $userBook;
-            $userBook->addUsername($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserBook(UserBook $userBook): self
-    {
-        if ($this->userBooks->contains($userBook)) {
-            $this->userBooks->removeElement($userBook);
-            $userBook->removeUsername($this);
-        }
-
-        return $this;
     }
 
     public function setRoles(array $roles): self
