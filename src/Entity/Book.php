@@ -79,6 +79,16 @@ class Book
      */
     private $legalDeposit;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserBook", mappedBy="possessedBook")
+     */
+    private $userBooks;
+
+    public function __construct()
+    {
+        $this->userBooks = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -229,6 +239,37 @@ class Book
     public function setLegalDeposit(?string $legalDeposit): self
     {
         $this->legalDeposit = $legalDeposit;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserBook[]
+     */
+    public function getUserBooks(): Collection
+    {
+        return $this->userBooks;
+    }
+
+    public function addUserBook(UserBook $userBook): self
+    {
+        if (!$this->userBooks->contains($userBook)) {
+            $this->userBooks[] = $userBook;
+            $userBook->setPossessedBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserBook(UserBook $userBook): self
+    {
+        if ($this->userBooks->contains($userBook)) {
+            $this->userBooks->removeElement($userBook);
+            // set the owning side to null (unless already changed)
+            if ($userBook->getPossessedBook() === $this) {
+                $userBook->setPossessedBook(null);
+            }
+        }
 
         return $this;
     }

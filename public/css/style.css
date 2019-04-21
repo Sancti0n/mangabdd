@@ -6,3 +6,11 @@ label.required:after {
 .redFields {
     color: red;
 }
+
+.icon-plus-circle, .icon-check-circle {
+    color: green;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}

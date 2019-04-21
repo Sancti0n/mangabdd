@@ -7,7 +7,7 @@
 {% block body %}
 
 <div class="card mb-3">
-  <h1 class="card-header">{{ book.title }}</h1>
+  <h1 class="card-header">{{ book.title }} {% if app.user %}<a href="#" ><span class="icon-plus-circle"></span></a> <span class="icon-check-circle"></span>{% endif %}</h1>
   
   <h4 class="card-header">
   {% if book.author == book.artist %}
@@ -27,7 +27,6 @@
     <p class="card-text">ISBN 13 : {{ book.isbn13 }}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Tome {{ book.ntitle }}</li>
     <li class="list-group-item">Éditeur ayant droit : {{ book.rightholderPublisher }}</li>
     <li class="list-group-item">Éditeur : {{ book.publisher }}</li>
     <li class="list-group-item">Langue : {{ book.language }}</li>

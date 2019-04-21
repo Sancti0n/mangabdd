@@ -48,6 +48,11 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserBook", mappedBy="user")
+     */
+    private $userBooks;
+
     public function __construct()
     {
         $this->userBooks = new ArrayCollection();
@@ -118,6 +123,37 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserBook[]
+     */
+    public function getUserBooks(): Collection
+    {
+        return $this->userBooks;
+    }
+
+    public function addUserBook(UserBook $userBook): self
+    {
+        if (!$this->userBooks->contains($userBook)) {
+            $this->userBooks[] = $userBook;
+            $userBook->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserBook(UserBook $userBook): self
+    {
+        if ($this->userBooks->contains($userBook)) {
+            $this->userBooks->removeElement($userBook);
+            // set the owning side to null (unless already changed)
+            if ($userBook->getUser() === $this) {
+                $userBook->setUser(null);
+            }
+        }
 
         return $this;
     }
