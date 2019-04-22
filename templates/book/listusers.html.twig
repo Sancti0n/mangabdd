@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des utilisateurs
+{% endblock %}
+
+{% block body %}
+
+{% for user in user %}
+
+{% if not(user.roles[0] == 'ROLE_ADMIN' or user.roles[0] == 'ROLE_SUPER_ADMIN') %}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id du membre</th>
+            <th scope="col">Nom du membre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-primary">
+            <th scope="row">{{ user.id }}</th>
+            <td><a href="{{ path('profil_membre', {'id' : user.id, 'username' : user.username}) }}" class="text-success">{{ user.username }}</a></td>
+        </tr>
+    </tbody>
+</table>
+
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

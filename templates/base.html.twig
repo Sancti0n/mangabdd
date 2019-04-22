@@ -33,6 +33,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('books') }}">Liste des livres</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('membres') }}">Liste des membres</a>
+                </li>
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('administration') }}">Administration</a>
