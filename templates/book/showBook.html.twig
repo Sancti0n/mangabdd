@@ -7,7 +7,16 @@
 {% block body %}
 
 <div class="card mb-3">
-  <h1 class="card-header">{{ book.title }} {% if app.user %}<a href="#" ><span class="icon-plus-circle"></span></a> <span class="icon-check-circle"></span>{% endif %}</h1>
+  <h1 class="card-header">
+    {{ book.title }}
+    <a href="{{ path('book_owned', {'id': book.id }) }}" class="js-owned">
+      {% if app.user and book.isOwnedByUser(app.user) %}
+      <span id="not-own" class="icon-check-circle"></span>
+      {% elseif app.user %}
+      <span id="own" class="icon-plus-circle"></span>
+      {% endif %}
+    </a>
+  </h1>
   
   <h4 class="card-header">
   {% if book.author == book.artist %}
@@ -41,5 +50,12 @@
 {% if is_granted('ROLE_SUPER_ADMIN') %}
 <a href="{{ path('book_delete', {'id' : book.id, 'ntitle' : book.ntitle, 'title' : book.slug}) }} " class="btn btn-outline-danger">Supprimer la fiche</a>
 {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('../js/ajax-btn.js') }}"></script>
 
 {% endblock %}

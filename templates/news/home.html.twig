@@ -2,9 +2,11 @@
 
 {% block body %}
 
-<h1 class="display-5">Bienvenue sur ce site de news !</h1>
+<h1 class="display-5">Bienvenue sur ce site de gestion de livres !</h1>
 {% if app.user %}
+<a href="{{ path('profil_membre', {'id' : app.user.id, 'username' : app.user.username}) }}" class="btn btn-primary btn-sm mb-3">Mon profil</a>
 <p>Bonjour {{ app.user.username }}, votre rôle est {{ app.user.roles[0] }}.</p>
+
 {% endif %}
 
 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, adipisci ipsum cum, iste debitis id iusto rerum officiis in deleniti alias amet totam minus minima assumenda saepe blanditiis, aspernatur numquam quod reprehenderit et accusantium. Perspiciatis

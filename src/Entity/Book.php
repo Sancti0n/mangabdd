@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
@@ -272,5 +274,14 @@ class Book
         }
 
         return $this;
+    }
+
+    public function isOwnedByUser(User $user) : bool {
+        foreach ($this->userBooks as $userbook) {
+            if ($userbook->getUser() === $user) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -70,3 +70,13 @@ Ajout d'un livre
 {{ form_end(formBook) }}
 
 {% endblock %}
+
+{% block javascripts %}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<script src="{{ asset('../js/api.js') }}"></script>
+
+{% endif %}
+
+{% endblock %}

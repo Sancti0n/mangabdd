@@ -1,9 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Profil de {{ app.user.username }}
+    Profil de {{ user.username }}
 {% endblock %}
 
 {% block body %}
+
+<h1 class="display-5">Votre collection de livres</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th scope="row">Titre</th>
+            <th scope="row">Numéro du volume</th>
+            <th scope="row">Format</th>
+            <th scope="row">Langue</th>
+            <th scope="row">Éditeur</th>
+        </tr>
+    </thead>
+
+{% for userbook in userBook %}
+
+    <tr class="table-dark">
+        <td><a href="{{ path('book_id', {'id' : userbook.possessedBook.id, 'ntitle' : userbook.possessedBook.ntitle, 'title' : userbook.possessedBook.slug}) }}" class="text-primary">{{ userbook.possessedBook.title }}</a> </td>
+        <td>{{ userbook.possessedBook.ntitle }}</td>
+        <td>{{ userbook.possessedBook.format }}</td>
+        <td>{{ userbook.possessedBook.language }}</td>
+        <td>{{ userbook.possessedBook.publisher }}</td>
+    </tr>
+
+{% endfor %}
+
 
 {% endblock %}
