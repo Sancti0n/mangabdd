@@ -2,7 +2,7 @@ function onClickBtnOwned(event) {
     event.preventDefault();
 
     const url = this.href;
-    const icone = this.querySelector('span');
+    const icone = this.querySelector("span");
 
     axios.get(url).then(function (response) {
       if(icone.classList.contains("icon-plus-circle")) {
@@ -14,6 +14,6 @@ function onClickBtnOwned(event) {
     })
   }
 
-  document.querySelectorAll('a.js-owned').forEach(function(link) {
-    link.addEventListener('click', onClickBtnOwned);
-  })
+  document.querySelectorAll("a.js-owned").forEach(function(link) {
+    link.addEventListener("click", onClickBtnOwned);
+  });
