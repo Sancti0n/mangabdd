@@ -11,7 +11,7 @@ function onClickBtnOwned(event) {
       else {
         icone.classList.replace("icon-check-circle", "icon-plus-circle");
       }
-    })
+    });
   }
 
   document.querySelectorAll("a.js-owned").forEach(function(link) {

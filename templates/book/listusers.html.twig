@@ -8,7 +8,7 @@
 
 <table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-primary">
             <th scope="col">Id du membre</th>
             <th scope="col">Nom du membre</th>
         </tr>
@@ -19,9 +19,9 @@
 
 {% if not(user.roles[0] == 'ROLE_ADMIN' or user.roles[0] == 'ROLE_SUPER_ADMIN') %}
 
-        <tr class="table-primary">
+        <tr class="table-dark">
             <th scope="row">{{ user.id }}</th>
-            <td><a href="{{ path('profil_membre', {'id' : user.id, 'username' : user.username}) }}" class="text-success">{{ user.username }}</a></td>
+            <td><a href="{{ path('profil_membre', {'id' : user.id, 'username' : user.username}) }}" class="text-primary">{{ user.username }}</a></td>
         </tr>
 
 {% endif %}
